@@ -7,7 +7,7 @@ import styles from "./Header.module.scss";
 
 const logo = (
    <div className={styles.logo}>
-      <NavLink to="home">
+      <NavLink to="/">
          <h2>S<span>vyazno</span>Y</h2>
       </NavLink>
    </div>
