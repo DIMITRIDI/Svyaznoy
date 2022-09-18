@@ -1,7 +1,11 @@
 import { useState} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaTimes } from 'react-icons/fa';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
+import { signOut } from "firebase/auth";
+import { toast } from 'react-toastify';
+
+import { auth } from '../../firebase/config';
 
 import styles from "./Header.module.scss";
 
@@ -27,6 +31,7 @@ const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : `${styles.
 
 const Header = () => {
    const [showMenu, setShowMenu] = useState(false);
+   const navigate = useNavigate();
 
    const toggleMenu = () => {
       setShowMenu(!showMenu);
@@ -34,6 +39,15 @@ const Header = () => {
 
    const hideMenu = () => {
       setShowMenu(false);
+   };
+
+   const logoutUser = () => {
+      signOut(auth).then(() => {
+         toast.success("Logout Successfully.");
+         navigate("/");
+      }).catch((error) => {
+         toast.error(error.message);
+      });
    };
 
    return (
@@ -48,10 +62,10 @@ const Header = () => {
                      <FaTimes size={22} onClick={hideMenu} />
                   </li>
                   <li>
-                     <NavLink to="home" className={activeLink} >Home</NavLink>
+                     <NavLink to="/home" className={activeLink} >Home</NavLink>
                   </li>
                   <li>
-                     <NavLink to="contact" className={activeLink} >Contact Us</NavLink>
+                     <NavLink to="/contact" className={activeLink} >Contact Us</NavLink>
                   </li>
                </ul>
                <div className={styles["header-right"]} onClick={hideMenu} >
@@ -59,6 +73,7 @@ const Header = () => {
                      <NavLink to="login" className={activeLink} >login</NavLink>
                      <NavLink to="register" className={activeLink} >Register</NavLink>
                      <NavLink to="order-history" className={activeLink} >My Order</NavLink>
+                     <NavLink to="/" onClick={logoutUser} >Logout</NavLink>
                   </span>
                   {cart}
                </div>
