@@ -1,11 +1,14 @@
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { FaShoppingCart, FaTimes } from 'react-icons/fa';
+import { FaShoppingCart, FaTimes, FaUserCircle } from 'react-icons/fa';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
-import { signOut } from "firebase/auth";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 
 import { auth } from '../../firebase/config';
+import { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } from '../../redux/slice/authSlice';
+import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
 
 import styles from "./Header.module.scss";
 
@@ -31,7 +34,35 @@ const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : `${styles.
 
 const Header = () => {
    const [showMenu, setShowMenu] = useState(false);
+   const [displayName, setDisplayName] = useState("");
    const navigate = useNavigate();
+
+   const dispatch = useDispatch();
+
+   // Monitor currently sign in user
+   useEffect(() => {
+      onAuthStateChanged(auth, (user) => {
+         if (user) {
+            // console.log(user);
+            if (user.displayName == null) {
+               const u1 = user.email.substring(0, user.email.indexOf("@"));
+               const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
+               setDisplayName(uName);
+            } else {
+               setDisplayName(user.displayName);
+            }
+
+            dispatch(SET_ACTIVE_USER({
+               email: user.email,
+               userName: user.displayName ? user.displayName : displayName,
+               userID: user.uid,
+            }))
+         } else {
+            setDisplayName("");
+            dispatch(REMOVE_ACTIVE_USER());
+         }
+      });
+   }, [dispatch, displayName]);
 
    const toggleMenu = () => {
       setShowMenu(!showMenu);
@@ -70,10 +101,21 @@ const Header = () => {
                </ul>
                <div className={styles["header-right"]} onClick={hideMenu} >
                   <span className={styles.links}>
-                     <NavLink to="login" className={activeLink} >login</NavLink>
-                     <NavLink to="register" className={activeLink} >Register</NavLink>
-                     <NavLink to="order-history" className={activeLink} >My Order</NavLink>
-                     <NavLink to="/" onClick={logoutUser} >Logout</NavLink>
+                     <ShowOnLogout>
+                        <NavLink to="login" className={activeLink} >login</NavLink>
+                     </ShowOnLogout>
+                     <ShowOnLogin>
+                        <a href='#home' style={{color: "#ff7722"}}>
+                           <FaUserCircle size={16}/>
+                           Hi, {displayName}
+                        </a>
+                     </ShowOnLogin>
+                     <ShowOnLogin>
+                        <NavLink to="order-history" className={activeLink} >My Order</NavLink>
+                     </ShowOnLogin>
+                     <ShowOnLogin>
+                        <NavLink to="/" onClick={logoutUser} >Logout</NavLink>
+                     </ShowOnLogin>
                   </span>
                   {cart}
                </div>
