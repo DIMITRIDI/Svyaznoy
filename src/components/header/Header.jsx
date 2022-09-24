@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { FaShoppingCart, FaTimes, FaUserCircle } from 'react-icons/fa';
+import { FaShoppingCart, FaTimes, FaUserCircle, FaHeart } from 'react-icons/fa';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { toast } from 'react-toastify';
@@ -25,6 +25,15 @@ const cart = (
       <NavLink to="cart">
          Cart
          <FaShoppingCart size={20}/>
+         <p>0</p>
+      </NavLink>
+   </span>
+);
+
+const favorite = (
+   <span className={styles.cart}>
+      <NavLink to="favorite">
+         <FaHeart size={16}/>
          <p>0</p>
       </NavLink>
    </span>
@@ -93,10 +102,13 @@ const Header = () => {
                      <FaTimes size={22} onClick={hideMenu} />
                   </li>
                   <li>
-                     <NavLink to="/home" className={activeLink} >Home</NavLink>
+                     <NavLink to="home" className={activeLink} >Home</NavLink>
                   </li>
                   <li>
-                     <NavLink to="/contact" className={activeLink} >Contact Us</NavLink>
+                     <NavLink to="shop" className={activeLink} >Shop</NavLink>
+                  </li>
+                  <li>
+                     <NavLink to="contact" className={activeLink} >Contact Us</NavLink>
                   </li>
                </ul>
                <div className={styles["header-right"]} onClick={hideMenu} >
@@ -117,6 +129,7 @@ const Header = () => {
                         <NavLink to="/" onClick={logoutUser} >Logout</NavLink>
                      </ShowOnLogin>
                   </span>
+                  {favorite}
                   {cart}
                </div>
             </nav>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import { sliderData } from "./slider-data";
 import "./Slider.scss";
 
@@ -10,7 +11,7 @@ const Slider = () => {
 
    const autoScroll = true;
    let slideInterval;
-   let intervalTime = 5000;
+   let intervalTime = 500000;
 
    const nextSlide = () => {
       setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
@@ -35,7 +36,7 @@ const Slider = () => {
    }, [currentSlide, slideInterval, autoScroll]);
 
    return (
-      <div className="slider">
+      <section className="slider">
          <AiOutlineArrowLeft className="arrow prev" onClick={prevSlide} />
          <AiOutlineArrowRight className="arrow next" onClick={nextSlide} />
 
@@ -50,14 +51,14 @@ const Slider = () => {
                         <h2>{heading}</h2>
                         <p>{desc}</p>
                         <hr />
-                        <a href="#product" className="--btn --btn-primary">Shop Now</a>
+                        <Link to='/shop' className="--btn --btn-primary">Shop Now</Link>
                      </div>
                   </>
                   )}
                </div>
             );
          })}
-      </div>
+      </section>
    );
 };
 
