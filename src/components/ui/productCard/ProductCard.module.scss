@@ -1,16 +1,29 @@
 .product__item {
+   margin: 10px 5px;
+   padding: 0 10px;
    cursor: pointer;
 
    &:hover {
-      box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+      box-shadow: var(--box-shadow);
    }
 }
 
 .product__img {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 336px;
+   overflow: hidden;
    transition: all .2s ease-in-out;
 
    &:hover {
       transform: scale(0.9);
+   }
+
+   img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
    }
 }
 

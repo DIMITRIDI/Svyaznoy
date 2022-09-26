@@ -303,6 +303,7 @@ p {
 .--btn-primary {
   color: #fff;
   background: #007bff;
+  width: 120px;
 }
 .--btn-secondary {
   color: #fff;
@@ -429,9 +430,4 @@ a {
   color: var(--dark-blue);
   text-decoration: none;
   transition: all 0.2s;
-}
-
-a:hover {
-  color: var(--color-dark);
-  transform: scale(1.1);
 }

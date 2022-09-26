@@ -1,0 +1,26 @@
+.clock__wrapper {
+   display: flex;
+   margin-bottom: 20px;
+}
+
+.clock__data {
+   display: flex;
+   color: var(--color-white);
+   padding: 30px 0;
+
+   h2 {
+      font-size: 40px;
+      text-align: center;
+      line-height: 1;
+      color: var(--color-white);
+   }
+
+   h5 {
+      text-align: center;
+   }
+
+   span {
+      font-size: 40px;
+      padding: 0 50px;
+   }
+}
