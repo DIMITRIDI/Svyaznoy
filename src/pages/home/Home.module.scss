@@ -1,12 +1,13 @@
 .section__title {
    font-weight: 600;
    text-align: center;
-   margin-bottom: 20px;
+   margin-bottom: 4rem;
 }
 
 .timer__count {
    background: var(--dark-blue);
-   height: 300px;
+   height: 330px;
+   margin-bottom: 4rem;
 
    h4 {
       color: var(--color-white);
@@ -21,4 +22,14 @@
 
 .text__end {
    text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+   h4 {
+      text-align: center;
+   }
+
+   .text__end {
+      display: none;
+   }
 }

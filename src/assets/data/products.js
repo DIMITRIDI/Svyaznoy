@@ -294,9 +294,9 @@ const products = [
    },
    {
       id: "13",
-      productName: "Ноутбук HONOR MagicBook X15 i3, RAM 8 Гб, SSD 256 Гб, 53011UGC серый космос",
+      productName: "Ноутбук HONOR MagicBook X15 i3, RAM 8 Гб, SSD 256 Гб, серый",
       imgUrl: notebook01,
-      category: "computer",
+      category: "notebook",
       price: 750,
       shortDesc:
          "Процессоры 8-го поколения c 4 и 6 ядрами. Высокоскоростная память DDR4 2666 МГц.",
@@ -316,9 +316,9 @@ const products = [
    },
    {
       id: "14",
-      productName: "Apple iPhone 13 ProНоутбук Apple MacBook Air 13 M1, 7-core GPU, 8 ГБ, 256 ГБ SSD",
+      productName: "ProНоутбук Apple MacBook Air 13 M1, 7-core GPU, 8 ГБ, 256 ГБ SSD",
       imgUrl: notebook02,
-      category: "computer",
+      category: "notebook",
       price: 1833,
       shortDesc:
          "Самый тонкий и легкий ноутбук Apple теперь стал суперсильным благодаря чипу Apple M1.",
@@ -340,7 +340,7 @@ const products = [
       id: "15",
       productName: "Ноутбук ASUS X515JF-BR326T серебристый",
       imgUrl: notebook03,
-      category: "computer",
+      category: "notebook",
       price: 533,
       shortDesc:
          "ASUS Laptop 15 X515 – это универсальный ноутбук начального уровня, объединяющий в себе стильный дизайн и современные технологии.",
@@ -362,7 +362,7 @@ const products = [
       id: "16",
       productName: "Ноутбук Lenovo IdeaPad L3 15ITL6 82HL003ERK серый",
       imgUrl: notebook04,
-      category: "computer",
+      category: "notebook",
       price: 900,
       shortDesc:
          "Универсальный ноутбук начального уровня, объединяющий в себе стильный дизайн и современные технологии.",

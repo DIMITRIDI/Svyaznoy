@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaTimes, FaUserCircle, FaHeart } from 'react-icons/fa';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
@@ -12,7 +12,7 @@ import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
 
 import styles from "./Header.module.scss";
 
-const logo = (
+export const logo = (
    <div className={styles.logo}>
       <NavLink to="/">
          <h2>S<span>vyazno</span>Y</h2>
@@ -44,6 +44,26 @@ const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : `${styles.
 const Header = () => {
    const [showMenu, setShowMenu] = useState(false);
    const [displayName, setDisplayName] = useState("");
+   
+   // header sticky
+   const headerRef = useRef(null);
+
+   const stickyHeaderFunc = () => {
+      window.addEventListener('scroll', () => {
+         if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+            headerRef.current.classList.add('sticky__header');
+         } else {
+            headerRef.current.classList.remove('sticky__header');
+         }
+      });
+   };
+
+   useEffect(() => {
+      stickyHeaderFunc();
+
+      return () => window.removeEventListener('scroll', stickyHeaderFunc);
+   });
+
    const navigate = useNavigate();
 
    const dispatch = useDispatch();
@@ -91,7 +111,7 @@ const Header = () => {
    };
 
    return (
-      <header>
+      <header ref={headerRef}>
          <div className={styles.header}>
             {logo}
             <nav className={showMenu ? `${styles["show-nav"]}` : `${styles["hide-nav"]}`} >

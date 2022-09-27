@@ -18,6 +18,7 @@ const Home = () => {
    const [bestSalesProducts, setBestSalesProducts] = useState([]);
    const [mobileProducts, setMobileProducts] = useState([]);
    const [wirelessProducts, setWirelessProducts] = useState([]);
+   const [popularProducts, setPopularProducts] = useState([]);
 
    useEffect(() => {
       const filteredTrendingProducts = products.filter(
@@ -29,17 +30,22 @@ const Home = () => {
       );
 
       const filteredMobileProducts = products.filter(
-         (item) => item.category === 'computer'
+         (item) => item.category === 'notebook'
       );
 
       const filteredWirelessProducts = products.filter(
          (item) => item.category === 'appliances'
       );
 
+      const filteredPopularProducts = products.filter(
+         (item) => item.category === 'computer'
+      );
+
       setTrendingProducts(filteredTrendingProducts);
       setBestSalesProducts(filteredBestSalesProducts);
       setMobileProducts(filteredMobileProducts);
       setWirelessProducts(filteredWirelessProducts);
+      setPopularProducts(filteredPopularProducts);
    }, []);
 
    return (
@@ -53,6 +59,16 @@ const Home = () => {
                      <h2 className={styles.section__title}>Trending Products</h2>
                   </Col>
                   <ProductsList data={trendingProducts} />
+               </Row>
+            </Container>
+         </section>
+         <section className={styles.best__sales}>
+            <Container>
+               <Row>
+                  <Col lg='12'>
+                     <h2 className={styles.section__title}>Best Sales</h2>
+                  </Col>
+                  <ProductsList data={bestSalesProducts} />
                </Row>
             </Container>
          </section>
@@ -72,16 +88,6 @@ const Home = () => {
                </Row>
             </Container>
          </section>
-         <section className={styles.best__sales}>
-            <Container>
-               <Row>
-                  <Col lg='12'>
-                     <h2 className={styles.section__title}>Best Sales</h2>
-                  </Col>
-                  <ProductsList data={bestSalesProducts} />
-               </Row>
-            </Container>
-         </section>
          <section className={styles.new__arrivals}>
             <Container>
                <Row>
@@ -90,6 +96,16 @@ const Home = () => {
                   </Col>
                   <ProductsList data={mobileProducts} />
                   <ProductsList data={wirelessProducts} />
+               </Row>
+            </Container>
+         </section>
+         <section className={styles.popular__category}>
+            <Container>
+               <Row>
+                  <Col lg='12'>
+                     <h2 className={styles.section__title}>Popular in Category</h2>
+                  </Col>
+                  <ProductsList data={popularProducts} />
                </Row>
             </Container>
          </section>
