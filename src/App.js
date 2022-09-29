@@ -1,6 +1,4 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { Header, Footer } from "./components";
 
@@ -12,7 +10,6 @@ function App() {
    return (
       <>
          <BrowserRouter>
-            <ToastContainer />
             <Header />
             <Routes>
                <Route path="/" element={ <Navigate to="home" /> } />

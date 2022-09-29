@@ -4,7 +4,7 @@ import { FaShoppingCart, FaTimes, FaUserCircle, FaHeart } from 'react-icons/fa';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { auth } from '../../firebase/config';
 import { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } from '../../redux/slice/authSlice';
@@ -18,16 +18,6 @@ export const logo = (
          <h2>S<span>vyazno</span>Y</h2>
       </NavLink>
    </div>
-);
-
-const cart = (
-   <span className={styles.cart}>
-      <NavLink to="cart">
-         Cart
-         <FaShoppingCart size={20}/>
-         <p>0</p>
-      </NavLink>
-   </span>
 );
 
 const favorite = (
@@ -44,6 +34,8 @@ const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : `${styles.
 const Header = () => {
    const [showMenu, setShowMenu] = useState(false);
    const [displayName, setDisplayName] = useState("");
+
+   const totalQuantity = useSelector(state => state.cart.totalQuantity);
    
    // header sticky
    const headerRef = useRef(null);
@@ -150,11 +142,23 @@ const Header = () => {
                      </ShowOnLogin>
                   </span>
                   {favorite}
-                  {cart}
+                  <span className={styles.cart}>
+                     <NavLink to="cart">
+                        Cart
+                        <FaShoppingCart size={20}/>
+                        <p>{totalQuantity}</p>
+                     </NavLink>
+                  </span>
                </div>
             </nav>
             <div className={styles["menu-icon"]}>
-               {cart}
+               <span className={styles.cart}>
+                  <NavLink to="cart">
+                     Cart
+                     <FaShoppingCart size={20}/>
+                     <p>{totalQuantity}</p>
+                  </NavLink>
+               </span>
                <HiOutlineMenuAlt3 size={28} onClick={toggleMenu} />
             </div>
          </div>

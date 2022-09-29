@@ -1,0 +1,17 @@
+.common__section {
+   background: 
+		linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+		url('http://i1.photo.2gis.com/main/branch/25/70000001025921851/common');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   padding: 100px 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   h1 {
+      color: var(--color-white);
+      font-weight: 600;
+   }
+}
