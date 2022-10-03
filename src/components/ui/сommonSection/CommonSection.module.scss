@@ -15,3 +15,13 @@
       font-weight: 600;
    }
 }
+
+@media only screen and (max-width: 800px) {
+   .common__section {
+      padding: 70px 0;
+
+      h1 {
+         font-size: 3rem;
+      }
+   }
+}

@@ -6,20 +6,23 @@
    }
 }
 
-.filter__widget select {
-   padding: 8px 20px;
-   background: var(--color-dark);
-   color: var(--color-white);
-   border: 1px solid var(--color-dark);
-   border-radius: 5px;
-   cursor: pointer;
+.filter__widget {
+   select {
+      margin: 5px 0;
+      padding: 8px 20px;
+      background: var(--dark-blue);
+      color: var(--color-white);
+      border: 1px solid var(--dark-blue);
+      border-radius: 5px;
+      cursor: pointer;
 
-   &:focus {
-      outline: none;
-   }
+      &:focus {
+         outline: none;
+      }
 
-   option {
-      font-size: 0.9rem;
+      option {
+         font-size: 0.9rem;
+      }
    }
 }
 
@@ -28,9 +31,10 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   border: 1px solid var(--color-dark);
+   border: 1px solid var(--dark-blue);
    border-radius: 5px;
    padding: 0 12px 0 2px;
+   margin: 5px 0;
    cursor: pointer;
 
    input {
@@ -42,6 +46,6 @@
 
    span {
       font-size: 16px;
-      color: var(--color-dark);
+      color: var(--dark-blue);
    }
 }
